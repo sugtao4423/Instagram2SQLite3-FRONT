@@ -1,29 +1,31 @@
-# instagram2sqlite3-front
+# Instagram2SQLite3-FRONT
 
-## Project setup
-```
-npm install
-```
+[Instagram2SQLite3](https://github.com/sugtao4423/Instagram2SQLite3)のフロント側
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+apiとして使うphpはこんな感じでいいんじゃね（適当
 
-### Compiles and minifies for production
+## getjson.php
 ```
-npm run build
-```
+<?php
+$db = new SQLite3('./data/USERNAME.db');
 
-### Run your tests
-```
-npm run test
-```
+$count = $_GET['c'] ?? 50;
+$page = $_GET['p'] ?? 1;
 
-### Lints and fixes files
-```
-npm run lint
+$query = $db->query('SELECT * FROM USERNAME ORDER BY timestamp DESC LIMIT ' . $count*($page-1) . ", ${count}");
+
+$result = [];
+while($row = $query->fetchArray(SQLITE3_ASSOC)){
+    $result[] = $row;
+}
+
+echo json_encode($result, JSON_UNESCAPED_UNICODE);
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## 使うときに書き換えるもの
+* `getjson.php`:
+    - `USERNAME.db`
+    - `USERNAME`
+* `App.vue`:
+    - `apiUrl: './getjson.php'`
+    - `mediaDir: './data/USERNAME'`

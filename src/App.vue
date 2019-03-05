@@ -1,28 +1,105 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" class="container">
+    <div
+      class="row"
+      v-for="i in Math.ceil(posts.length / 3)"
+      :key="i"
+    >
+      <div
+        class="box col m4"
+        v-for="post in posts.slice((i - 1) * 3, i * 3)"
+        :key="post.timestamp"
+      >
+        <GraphImage
+          v-if="post.typename === 'GraphImage'"
+          :imgPath="getPath(post.medias)"
+        />
+
+        <GraphVideo
+          v-else-if="post.typename === 'GraphVideo'"
+          :videoPath="getPath(post.medias)"
+        />
+
+        <GraphSidecar
+          v-else-if="post.typename === 'GraphSidecar'"
+          :dataDirPath="mediaDir"
+          :mediaNames="post.medias"
+        />
+
+        <div>
+            <p>{{ post.text }}</p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+import axios from 'axios';
+import GraphImage from './components/GraphImage.vue';
+import GraphVideo from './components/GraphVideo.vue';
+import GraphSidecar from './components/GraphSidecar.vue';
 
 export default {
   name: 'app',
+  data() {
+    return {
+      apiUrl: './getjson.php',
+      mediaDir: './data/USERNAME',
+      posts: [],
+      pageCount: 10,
+      page: 1,
+      fetching: false,
+    };
+  },
+  methods: {
+    getPath(fileName) {
+      return `${this.mediaDir}/${fileName}`;
+    },
+    async loadMore() {
+      this.fetching = true;
+      // eslint-disable-next-line
+      const url = `${this.apiUrl}?c=${this.pageCount}&p=${this.page++}`;
+      const postData = (await axios.get(url)).data;
+      this.posts = this.posts.concat(postData);
+      this.fetching = false;
+    },
+    infiniteScroll() {
+      // eslint-disable-next-line
+      if (document.body.offsetTop + document.body.offsetHeight < document.documentElement.scrollTop + window.innerHeight) {
+        if (!this.fetching) {
+          this.loadMore();
+        }
+      }
+    },
+  },
+  created() {
+    window.addEventListener('scroll', this.infiniteScroll);
+    this.loadMore();
+  },
+  async mounted() {
+    await this.loadMore();
+  },
   components: {
-    HelloWorld,
+    GraphImage,
+    GraphVideo,
+    GraphSidecar,
   },
 };
 </script>
 
 <style lang="scss">
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  margin-bottom: 20px;
+}
+.box{
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  margin-top: 20px;
+  border-radius: 6px;
+
+  &:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
 }
 </style>
