@@ -48,7 +48,7 @@ export default {
       mediaDir: './data/USERNAME',
       posts: [],
       pageCount: 10,
-      page: 1,
+      page: 0,
       fetching: false,
     };
   },
@@ -58,9 +58,12 @@ export default {
     },
     async loadMore() {
       this.fetching = true;
-      // eslint-disable-next-line
-      const url = `${this.apiUrl}?c=${this.pageCount}&p=${this.page++}`;
-      const postData = (await axios.get(url)).data;
+      const postData = (await axios.get(this.apiUrl, {
+        params: {
+          c: this.pageCount,
+          p: this.page += 1,
+        },
+      })).data;
       this.posts = this.posts.concat(postData);
       this.fetching = false;
     },
