@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "vue": "^2.6.6"
+    "vue": "^2.6.6",
+    "vue-infinite-loading": "^2.4.3"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.4.0",

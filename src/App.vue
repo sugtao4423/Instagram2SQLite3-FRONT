@@ -31,11 +31,13 @@
         </div>
       </div>
     </div>
+    <infinite-loading @infinite="infiniteHandler" />
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+import InfiniteLoading from 'vue-infinite-loading';
 import GraphImage from './components/GraphImage.vue';
 import GraphVideo from './components/GraphVideo.vue';
 import GraphSidecar from './components/GraphSidecar.vue';
@@ -49,15 +51,13 @@ export default {
       posts: [],
       pageCount: 10,
       page: 0,
-      fetching: false,
     };
   },
   methods: {
     getPath(fileName) {
       return `${this.mediaDir}/${fileName}`;
     },
-    async loadMore() {
-      this.fetching = true;
+    async infiniteHandler($state) {
       const postData = (await axios.get(this.apiUrl, {
         params: {
           c: this.pageCount,
@@ -65,25 +65,11 @@ export default {
         },
       })).data;
       this.posts = this.posts.concat(postData);
-      this.fetching = false;
+      $state.loaded();
     },
-    infiniteScroll() {
-      // eslint-disable-next-line
-      if (document.body.offsetTop + document.body.offsetHeight < document.documentElement.scrollTop + window.innerHeight) {
-        if (!this.fetching) {
-          this.loadMore();
-        }
-      }
-    },
-  },
-  created() {
-    window.addEventListener('scroll', this.infiniteScroll);
-    this.loadMore();
-  },
-  async mounted() {
-    await this.loadMore();
   },
   components: {
+    InfiniteLoading,
     GraphImage,
     GraphVideo,
     GraphSidecar,
