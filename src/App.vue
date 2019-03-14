@@ -27,7 +27,7 @@
         />
 
         <div>
-            <p>{{ post.text }}</p>
+            <nl2br tag="p" :text="post.text" />
         </div>
       </div>
     </div>
@@ -37,6 +37,7 @@
 
 <script>
 import axios from 'axios';
+import Nl2br from 'vue-nl2br';
 import InfiniteLoading from 'vue-infinite-loading';
 import GraphImage from './components/GraphImage.vue';
 import GraphVideo from './components/GraphVideo.vue';
@@ -69,6 +70,7 @@ export default {
     },
   },
   components: {
+    Nl2br,
     InfiniteLoading,
     GraphImage,
     GraphVideo,
