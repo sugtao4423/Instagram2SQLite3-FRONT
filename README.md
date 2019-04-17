@@ -27,5 +27,6 @@ echo json_encode($result, JSON_UNESCAPED_UNICODE);
     - `USERNAME.db`
     - `USERNAME`
 * `App.vue`:
+    - `pageTitle: 'PAGE_TITLE'`
     - `apiUrl: './getjson.php'`
     - `mediaDir: './data/USERNAME'`

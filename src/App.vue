@@ -47,6 +47,7 @@ export default {
   name: 'app',
   data() {
     return {
+      pageTitle: 'PAGE_TITLE',
       apiUrl: './getjson.php',
       mediaDir: './data/USERNAME',
       posts: [],
@@ -68,6 +69,9 @@ export default {
       this.posts = this.posts.concat(postData);
       $state.loaded();
     },
+  },
+  mounted() {
+    document.title = this.pageTitle;
   },
   components: {
     Nl2br,
