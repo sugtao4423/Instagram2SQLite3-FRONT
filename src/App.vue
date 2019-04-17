@@ -6,7 +6,7 @@
       :key="i"
     >
       <div
-        class="box col m4"
+        class="box col m4 grey lighten-4"
         v-for="post in posts.slice((i - 1) * 3, i * 3)"
         :key="post.timestamp"
       >
@@ -84,6 +84,9 @@ export default {
 </script>
 
 <style lang="scss">
+body {
+  background: url('./assets/dust_scratches.png');
+}
 #app {
   margin-bottom: 20px;
 }
