@@ -23,7 +23,7 @@
         />
 
         <div>
-          <nl2br tag="p" :text="post.text" />
+          <nl2br tag="p" :text="post.text" class-name="post-text" />
         </div>
       </div>
     </div>
@@ -97,5 +97,8 @@ body {
   &:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   }
+}
+.post-text {
+  word-break: break-all;
 }
 </style>
