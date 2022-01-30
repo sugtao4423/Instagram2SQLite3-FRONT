@@ -1,10 +1,6 @@
 <template functional>
   <div>
-    <video
-      class="responsive-video"
-      :src="props.videoPath"
-      controls
-    />
+    <video class="responsive-video" :src="props.videoPath" controls />
   </div>
 </template>
 
@@ -16,8 +12,7 @@ export default {
       required: true,
     },
   },
-};
+}
 </script>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>
