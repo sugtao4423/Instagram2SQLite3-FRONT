@@ -56,12 +56,14 @@ export default {
       return `${this.mediaDir}/${fileName}`
     },
     async infiniteHandler($state) {
-      const postData = (await axios.get(this.apiUrl, {
-        params: {
-          c: this.pageCount,
-          p: (this.page += 1),
-        },
-      })).data
+      const postData = (
+        await axios.get(this.apiUrl, {
+          params: {
+            c: this.pageCount,
+            p: (this.page += 1),
+          },
+        })
+      ).data
       this.posts = this.posts.concat(postData)
       $state.loaded()
     },
