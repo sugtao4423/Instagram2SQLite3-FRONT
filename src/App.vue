@@ -43,9 +43,9 @@ export default {
   name: 'app',
   data() {
     return {
-      pageTitle: 'PAGE_TITLE',
-      apiUrl: './getjson.php',
-      mediaDir: './data/USERNAME',
+      pageTitle: process.env.VUE_APP_PAGE_TITLE,
+      apiUrl: process.env.VUE_APP_API_URL,
+      mediaDir: process.env.VUE_APP_MEDIA_DIR_URL,
       posts: [],
       pageCount: 10,
       page: 0,
