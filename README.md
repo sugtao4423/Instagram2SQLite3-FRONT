@@ -15,7 +15,7 @@
 ## getjson.php
 apiとして使うphpはこんな感じでいいんじゃね（適当
 
-```
+```php
 <?php
 $username = $_GET['username'];
 $dbPath = "./data/${username}.db";
