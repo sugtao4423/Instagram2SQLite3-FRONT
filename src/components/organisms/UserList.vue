@@ -14,18 +14,23 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="user-list">
-    <ul class="collection">
-      <li v-for="user in users" :key="user" class="collection-item">
-        <router-link :to="createUserPath(user)">
-          {{ user }}
-        </router-link>
-      </li>
-    </ul>
+  <div class="user-list-wrapper">
+    <div class="user-list">
+      <ul class="collection">
+        <li v-for="user in users" :key="user" class="collection-item">
+          <router-link :to="createUserPath(user)">
+            {{ user }}
+          </router-link>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
 <style scoped>
+.user-list-wrapper {
+  height: calc(100vh - 20px);
+}
 .user-list {
   width: 90%;
   position: absolute;
