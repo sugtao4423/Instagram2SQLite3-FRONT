@@ -10,6 +10,7 @@ import HelloWorld from './components/HelloWorld.vue'
 </template>
 
 <style>
+@import 'materialize-css/dist/css/materialize.min.css';
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
