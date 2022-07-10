@@ -37,7 +37,7 @@ onMounted(() => {
         :key="post.timestamp"
         :post="post"
         :username="username"
-        class="col m4"
+        class="col-12 col-md-6 col-lg-4"
       />
     </div>
     <InfiniteLoading @infinite="loadData">
