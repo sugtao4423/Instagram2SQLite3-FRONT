@@ -19,13 +19,13 @@ const paths = post.value.medias.map((mediaUrl) =>
 </script>
 
 <template>
-  <div class="box grey lighten-4">
+  <div class="post">
     <GraphImage v-if="isGraphImage" :image-path="paths[0]" />
     <GraphVideo v-else-if="isGraphVideo" :video-path="paths[0]" />
     <GraphSidecar v-else-if="isGraphSidecar" :media-urls="paths" />
 
     <div>
-      <p class="post-text">
+      <p class="post__text">
         {{ post.text }}
       </p>
     </div>
@@ -33,16 +33,19 @@ const paths = post.value.medias.map((mediaUrl) =>
 </template>
 
 <style scoped>
-.box {
-  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+.post {
+  height: fit-content;
+  border-radius: 0.25rem;
+  margin-top: 1.5rem;
+  box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
   transition: 0.3s;
-  margin-top: 20px;
-  border-radius: 6px;
+  background-color: #f5f5f5;
 }
-.box:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+.post:hover {
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
 }
-.post-text {
+.post__text {
+  margin: 0.5rem 0 1rem;
   word-break: break-all;
   white-space: pre-wrap;
 }

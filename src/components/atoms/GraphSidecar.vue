@@ -19,5 +19,6 @@ const isVideo = (mediaUrl: string) => mediaUrl.endsWith('.mp4')
 <style scoped>
 .graph-sidecar {
   display: flex;
+  align-items: center;
 }
 </style>

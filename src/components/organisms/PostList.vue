@@ -31,13 +31,13 @@ onMounted(() => {
 
 <template>
   <div class="container">
-    <div v-for="i in Math.ceil(posts.length / 3)" :key="i" class="row">
+    <div class="row">
       <Post
-        v-for="post in posts.slice((i - 1) * 3, i * 3)"
+        v-for="post in posts"
         :key="post.timestamp"
         :post="post"
         :username="username"
-        class="col m4"
+        class="col-12 col-md-6 col-lg-4"
       />
     </div>
     <InfiniteLoading @infinite="loadData">

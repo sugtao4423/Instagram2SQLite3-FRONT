@@ -3,9 +3,15 @@
 </template>
 
 <style>
-@import 'materialize-css/dist/css/materialize.min.css';
+@import 'assets/css/reset.css';
+@import 'assets/css/grid.css';
 #app {
   padding-bottom: 20px;
   background-image: url('./assets/dust_scratches.png');
+}
+img,
+video {
+  max-width: 100%;
+  height: auto;
 }
 </style>
