@@ -4,6 +4,6 @@ defineProps<{ videoPath: string }>()
 
 <template>
   <div>
-    <video :src="videoPath" controls class="responsive-video" />
+    <video :src="videoPath" controls />
   </div>
 </template>

@@ -9,4 +9,9 @@
   padding-bottom: 20px;
   background-image: url('./assets/dust_scratches.png');
 }
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
 </style>

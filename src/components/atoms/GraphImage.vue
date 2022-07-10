@@ -5,7 +5,7 @@ defineProps<{ imagePath: string }>()
 <template>
   <div>
     <a :href="imagePath" target="_blank" rel="noopener noreferrer">
-      <img :src="imagePath" alt="image" class="responsive-img" />
+      <img :src="imagePath" alt="image" />
     </a>
   </div>
 </template>
