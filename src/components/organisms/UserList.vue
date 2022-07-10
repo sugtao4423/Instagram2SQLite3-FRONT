@@ -16,8 +16,8 @@ onMounted(async () => {
 <template>
   <div class="user-list-wrapper">
     <div class="user-list">
-      <ul class="collection">
-        <li v-for="user in users" :key="user" class="collection-item">
+      <ul>
+        <li v-for="user in users" :key="user">
           <router-link :to="createUserPath(user)">
             {{ user }}
           </router-link>
