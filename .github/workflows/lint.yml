@@ -26,3 +26,6 @@ jobs:
 
       - name: Check ESLint
         run: npm run lint
+
+      - name: Check Format
+        run: npm run format
