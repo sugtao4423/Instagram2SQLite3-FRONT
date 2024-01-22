@@ -1,10 +1,10 @@
 <script setup lang="ts">
+import GraphImage from '@/components/atoms/GraphImage.vue'
+import GraphSidecar from '@/components/atoms/GraphSidecar.vue'
+import GraphVideo from '@/components/atoms/GraphVideo.vue'
+import { createMediaPath } from '@/services/paths'
+import type { Post } from '@/services/postlist'
 import { toRefs } from 'vue'
-import { createMediaPath } from '../../services/paths'
-import { Post } from '../../services/postlist'
-import GraphImage from '../atoms/GraphImage.vue'
-import GraphSidecar from '../atoms/GraphSidecar.vue'
-import GraphVideo from '../atoms/GraphVideo.vue'
 
 const props = defineProps<{ post: Post; username: string }>()
 const { post, username } = toRefs(props)

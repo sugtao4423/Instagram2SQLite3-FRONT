@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import { createUserPath } from '@/services/paths'
+import { getUserList } from '@/services/userlist'
 import { onMounted, ref } from 'vue'
-import { createUserPath } from '../../services/paths'
-import { getUserList } from '../../services/userlist'
+import { RouterLink } from 'vue-router'
 
 const users = ref<string[]>([])
 
@@ -18,9 +19,9 @@ onMounted(async () => {
     <div class="user-list">
       <ul>
         <li v-for="user in users" :key="user">
-          <router-link :to="createUserPath(user)">
+          <RouterLink :to="createUserPath(user)">
             {{ user }}
-          </router-link>
+          </RouterLink>
         </li>
       </ul>
     </div>

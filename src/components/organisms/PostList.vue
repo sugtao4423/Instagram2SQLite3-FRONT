@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import Post from '@/components/molecules/Post.vue'
+import { getPostList, type Post as IPost } from '@/services/postlist'
 import InfiniteLoading from 'v3-infinite-loading'
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { getPostList, Post as IPost } from '../../services/postlist'
-import Post from '../molecules/Post.vue'
 
 const username = useRoute().params.username as string
 const posts = ref<IPost[]>([])
