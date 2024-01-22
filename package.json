@@ -9,10 +9,10 @@
     "lint": "eslint --max-warnings 0 src/**/*.{ts,vue}"
   },
   "dependencies": {
-    "axios": "^0.27.2",
-    "v3-infinite-loading": "^1.0.6",
-    "vue": "^3.2.25",
-    "vue-router": "^4.0.16"
+    "axios": "^1.6.5",
+    "v3-infinite-loading": "^1.3.1",
+    "vue": "^3.4.15",
+    "vue-router": "^4.2.5"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.30.4",
