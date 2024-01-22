@@ -27,7 +27,7 @@ function getUsernames(): array
 
 function getInstaData(string $username, $count, $page): array
 {
-    $dbPath = INSTA_DATA_DIR . "/${username}.db";
+    $dbPath = INSTA_DATA_DIR . "/{$username}.db";
     if (!file_exists($dbPath)) {
         echo '[]';
         exit(1);
@@ -39,7 +39,7 @@ function getInstaData(string $username, $count, $page): array
     $page = $page ?? 1;
     $offset = intval($count) * (intval($page) - 1);
 
-    $stmt = $db->prepare("SELECT * FROM '${username}' ORDER BY timestamp DESC LIMIT :offset, :count");
+    $stmt = $db->prepare("SELECT * FROM '{$username}' ORDER BY timestamp DESC LIMIT :offset, :count");
     $stmt->bindValue(':offset', $offset);
     $stmt->bindValue(':count', $count);
     $exec = $stmt->execute();
