@@ -1,42 +1,40 @@
 import axios from 'axios'
-import { getJsonUrl } from './paths'
+import { Path } from './path'
 
 export interface Post {
-  typename: string
+  typename: 'GraphImage' | 'GraphVideo' | 'GraphSidecar'
   text: string
   shortcode: string
   medias: string[]
   timestamp: number
 }
 
-interface PostResponse {
-  typename: string
-  text: string
-  shortcode: string
+interface PostResponse extends Omit<Post, 'medias'> {
   medias: string
-  timestamp: number
 }
 
-const postResponse2Post = (postResponse: PostResponse): Post => ({
-  ...postResponse,
-  medias: postResponse.medias.split(','),
-})
-
-export const getPostList = async (
+export const getPosts = async (
   username: string,
-  page = 1
-): Promise<Post[] | null> => {
+  page = 1,
+  setPosts: React.Dispatch<React.SetStateAction<Post[]>>,
+  setHasMore: React.Dispatch<React.SetStateAction<boolean>>
+): Promise<void> => {
   try {
-    return (
-      await axios.get<PostResponse[]>(getJsonUrl, {
-        params: {
-          username,
-          p: page,
-        },
+    const res = await axios.get<PostResponse[]>(Path.GET_JSON_URL, {
+      params: {
+        username,
+        p: page,
+      },
+    })
+    const posts = res.data.map(
+      (d): Post => ({
+        ...d,
+        medias: d.medias.split(','),
       })
-    ).data.map(postResponse2Post)
+    )
+    setPosts((prevPosts) => [...prevPosts, ...posts])
+    setHasMore(posts.length > 0)
   } catch (e) {
     console.error(e)
-    return null
   }
 }
