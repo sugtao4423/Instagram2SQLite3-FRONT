@@ -7,6 +7,10 @@ export default function Posts() {
   const params = useParams()
   const userName = params.userName!
 
+  useEffect(() => {
+    document.title = userName
+  }, [userName])
+
   const [posts, setPosts] = useState<Post[]>([])
   const [page, setPage] = useState<number>(0)
   const [hasMore, setHasMore] = useState<boolean>(true)
