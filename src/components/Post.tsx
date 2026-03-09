@@ -1,5 +1,5 @@
 import { Path } from '../services/path'
-import { Post as PostType } from '../services/postlist'
+import { type Post as PostType } from '../services/postlist'
 import { GraphImage, GraphSidecar, GraphVideo } from './Graphs'
 
 interface PostProps {

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router'
 import { Post as PostComponent } from '../components/Post'
-import { Post, getPosts } from '../services/postlist'
+import { type Post, getPosts } from '../services/postlist'
 
 export default function Posts() {
   const params = useParams()

@@ -1,10 +1,10 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { HashRouter, Route, Routes } from 'react-router-dom'
+import { HashRouter, Route, Routes } from 'react-router'
 import Posts from './routes/posts'
 import Root from './routes/root'
 
-import './global.css'
+import './index.css'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
