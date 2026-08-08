@@ -26,12 +26,10 @@ export const getPosts = async (
         p: page,
       },
     })
-    const posts = res.data.map(
-      (d): Post => ({
-        ...d,
-        medias: d.medias.split(','),
-      })
-    )
+    const posts = res.data.map((d): Post => ({
+      ...d,
+      medias: d.medias.split(','),
+    }))
     setPosts((prevPosts) => [...prevPosts, ...posts])
     setHasMore(posts.length > 0)
   } catch (e) {
